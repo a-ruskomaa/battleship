@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Dynamic;
 using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection;
@@ -16,10 +15,10 @@ namespace Battleship.Game
         {
             var board = new Board();
 
-            dynamic bäm = Newtonsoft.Json.JsonConvert.DeserializeObject<ExpandoObject>(System.IO.File.ReadAllText("battlezone.json"));
+            var gameActions = GameActions.FromJson("battlezone.json");
 
             // DEPLOY ZE ARMAAADA!
-            foreach (var o in bäm.pieces)
+            foreach (var o in gameActions.Pieces)
             {
                 foreach (var o2 in o)
                 {
@@ -32,12 +31,12 @@ namespace Battleship.Game
             // FIRE ZE CANNONS!
             for (int i = 0; i < 100; i++)
             {
-                if (!string.IsNullOrEmpty(bäm.shotsFired[i].ToString()))
+                if (!string.IsNullOrEmpty(gameActions.ShotsFired[i].ToString()))
                     Board.SetValue(board, linearray[i.GetLinearrayNumber()] + "" + (i % 10 + 1), 4); //SHOT FIRED!
             }
 
             // SINKING THE BISHMARK!
-            foreach (var o in bäm.pieces) // VAC ENABLED!
+            foreach (var o in gameActions.Pieces) // VAC ENABLED!
             {
                 foreach (var o2 in o)
                 {
