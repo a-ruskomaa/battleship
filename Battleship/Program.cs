@@ -6,17 +6,19 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 
-using PelilautaPahkina.Game;
+using Battleship.Game;
 
-namespace PelilautaPahkina
+namespace Battleship
 {
     public class Program
     {
         public static void Main(string[] args)
         {
-            var game = new Battleship();
+            var game = new BattleshipGame();
 
             game.Run();
+            
+            Console.ReadKey();
         }
     }
 }

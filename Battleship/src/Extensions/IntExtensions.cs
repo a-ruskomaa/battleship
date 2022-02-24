@@ -6,7 +6,7 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace PelilautaPahkina.Extensions
+namespace Battleship.Extensions
 {
     public static class IntExtensions
     {

@@ -6,9 +6,9 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 
-using PelilautaPahkina.Extensions;
+using Battleship.Extensions;
 
-namespace PelilautaPahkina.Game
+namespace Battleship.Game
 {
     public class Board
     {
@@ -64,6 +64,11 @@ namespace PelilautaPahkina.Game
             Console.WriteLine("---------------------");
             Console.WriteLine("");
             Console.WriteLine("* = Boatpiece, o = missed shot, X = DIRECT HIT!");
+        }
+
+        public string GetBoardState()
+        {
+            return string.Empty;
         }
     }
 }

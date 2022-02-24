@@ -6,14 +6,13 @@ using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
 
-using PelilautaPahkina.Game;
-using PelilautaPahkina.Extensions;
+using Battleship.Extensions;
 
-namespace PelilautaPahkina.Game
+namespace Battleship.Game
 {
-    public class Battleship
+    public class BattleshipGame
     {
-        public void Run()
+        public string Run()
         {
             var board = new Board();
 
@@ -50,7 +49,8 @@ namespace PelilautaPahkina.Game
             }
 
             board.DrawBoard();
-            Console.ReadKey();
+
+            return board.GetBoardState();
         }
     }
 }
