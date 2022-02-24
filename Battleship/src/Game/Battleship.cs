@@ -48,8 +48,6 @@ namespace Battleship.Game
                 }
             }
 
-            board.DrawBoard();
-
             return board.GetBoardState();
         }
     }

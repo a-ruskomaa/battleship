@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net.Http.Headers;
 using System.Reflection;
 using System.Threading.Tasks;
+using System.Text;
 
 using Battleship.Game;
 
@@ -16,9 +17,24 @@ namespace Battleship
         {
             var game = new BattleshipGame();
 
-            game.Run();
+            var result = game.Run();
+
+            PrintSummary(result);
             
             Console.ReadKey();
+        }
+
+        public static void PrintSummary(string endState)
+        {
+            var sb = new StringBuilder();
+
+            sb.AppendLine("Post Game Analysis :");
+            sb.AppendLine("");
+            sb.AppendLine(endState);
+            sb.AppendFormat("");
+            sb.AppendLine("* = Boatpiece, o = missed shot, X = DIRECT HIT!");
+
+            Console.Out.WriteLine(sb.ToString());
         }
     }
 }
