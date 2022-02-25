@@ -11,6 +11,14 @@ namespace Battleship.Game
 
         public Coordinate(int row, int cell)
         {
+            if (cell < 0 || cell >= boardSize)
+            {
+                throw new ArgumentOutOfRangeException(String.Format("Invalid cell value: {0}", cell));
+            }
+            if (row < 0 || row >= boardSize)
+            {
+                throw new ArgumentOutOfRangeException(String.Format("Invalid row value: {0}", row));
+            }
             Row = row;
             Cell = cell;
         }
@@ -34,16 +42,7 @@ namespace Battleship.Game
             try
             {
                 var row = Array.FindIndex(linearray, c => c == char.Parse(str.Substring(0, 1)));
-                if (row < 0 || row >= boardSize)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
-
                 var cell = int.Parse(str.Substring(1)) - 1;
-                if (cell < 0 || cell >= boardSize)
-                {
-                    throw new ArgumentOutOfRangeException();
-                }
 
                 return new Coordinate(row, cell);
             }
@@ -51,7 +50,7 @@ namespace Battleship.Game
             {
                 if (ex is ArgumentOutOfRangeException || ex is FormatException || ex is ArgumentNullException)
                 {
-                    throw new FormatException("Malformatted coordinate");
+                    throw new FormatException(string.Format("Invalid coordinate: {0}", str));
                 }
 
                 throw;

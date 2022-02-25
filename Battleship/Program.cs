@@ -11,14 +11,20 @@ namespace Battleship
         {
             var game = new BattleshipGame();
 
-            var result = game.Run();
+            try 
+            {
+                var result = game.Run();
+                System.Console.WriteLine(CreateSummary(result));
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine("The game failed to run. Cause: {0}. Message: \"{1}\"", e.GetType(), e.Message);
+            }
 
-            PrintSummary(result);
-            
             Console.ReadKey();
         }
 
-        private static void PrintSummary(string endState)
+        private static string CreateSummary(string endState)
         {
             var sb = new StringBuilder();
 
@@ -28,7 +34,7 @@ namespace Battleship
             sb.AppendFormat("");
             sb.AppendLine("* = Boatpiece, o = missed shot, X = DIRECT HIT!");
 
-            Console.Out.WriteLine(sb.ToString());
+            return sb.ToString();
         }
     }
 }
