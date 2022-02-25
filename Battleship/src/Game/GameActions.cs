@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Battleship.Game
 {
@@ -8,18 +9,19 @@ namespace Battleship.Game
     public class GameActions
     {
         /// <summary>
-        ///   Starting setup of board pieces
+        ///   Coordinates of board pieces
         /// </summary>
-        public string[][] Pieces { get; }
+        public IEnumerable<Coordinate> Pieces { get; }
         /// <summary>
-        ///   Array of shots fired
+        ///   Coordinates of fired shots
         /// </summary>
-        public string[] ShotsFired { get; }
+        public  IEnumerable<Coordinate> ShotsFired { get; }
 
         public GameActions(string[][] pieces, string[] shotsFired)
         {
-            Pieces = pieces;
-            ShotsFired = shotsFired;
+            Pieces = pieces.SelectMany(row => row.Select(cell => Coordinate.ParseFromString(cell)));
+
+            ShotsFired = shotsFired.Select((shot, index) => !string.IsNullOrEmpty(shot) ? new Coordinate(index / 10, index % 10) : null).Where(coordinate => coordinate is not null);
         }
 
         public static GameActions FromJson(string filePath)
