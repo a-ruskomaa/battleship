@@ -15,6 +15,20 @@ namespace Battleship.Game
             Cell = cell;
         }
 
+        /// <summary>
+        ///   Parses a string to create a new Coordinate object. Row and Cell indexes are zero-based.
+        /// </summary>
+        /// <example>
+        ///   <code>
+        ///     Coordinate.ParseFromString("a10") ~~~ new Coordinate(0,9)
+        ///     Coordinate.ParseFromString("b2") ~~~ new Coordinate(1,1)
+        ///   </code>
+        /// </example>
+        /// <param name="str">A string representating the param, for example "a10". Valid ranges are a-j and 1-10</param>
+        /// <returns>
+        ///   Returns a new Coordinate object
+        /// </returns>
+        /// <exception cref="FormatException"></exception>
         public static Coordinate ParseFromString(string str)
         {
             try
