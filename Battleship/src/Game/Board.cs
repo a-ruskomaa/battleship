@@ -3,21 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
+using static Battleship.Constants.Constants;
+
 namespace Battleship.Game
 {
     public class Board
     {
-        private const string rowSeparator = "---------------------";
-        private const string cellSeparator = "|";
-        private const string boatIcon = "*";
-        private const string shotHitIcon = "X";
-        private const string shotMissIcon = "o";
-
         private string[][] board;
 
         public Board(IEnumerable<Coordinate> ships)
         {
-            board = Enumerable.Range(0, 10).Select(i => Enumerable.Range(0,10).Select(j => " ").ToArray()).ToArray();
+            board = Enumerable.Range(0, boardSize).Select(i => Enumerable.Range(0,boardSize).Select(j => " ").ToArray()).ToArray();
             
             foreach (var item in ships)
             {
@@ -40,9 +36,9 @@ namespace Battleship.Game
 
             sb.AppendLine(rowSeparator);
 
-            for (var i = 0; i < 10; i++)
+            for (var i = 0; i < boardSize; i++)
             {
-                AppendRowData(sb, Enumerable.Range(0, 10).Select(j => board[i][j]));
+                AppendRowData(sb, Enumerable.Range(0, boardSize).Select(j => board[i][j]));
             }
 
             return sb.ToString();
@@ -50,7 +46,7 @@ namespace Battleship.Game
         
         private StringBuilder AppendRowData(StringBuilder sb, IEnumerable<string> boardChars)
         {
-            if (boardChars.Count() != 10)
+            if (boardChars.Count() != boardSize)
             {
                 throw new FormatException("Malformatted row coordinates");
             }

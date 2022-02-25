@@ -1,10 +1,11 @@
 using System;
 
+using static Battleship.Constants.Constants;
+
 namespace Battleship.Game
 {
     public class Coordinate
     {
-        private static readonly char[] linearray = new[] { 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j' };
         public int Row { get; }
         public int Cell { get; }
 
@@ -18,14 +19,14 @@ namespace Battleship.Game
         {
             try
             {
-                var row = Array.FindIndex(Coordinate.linearray, c => c == char.Parse(str.Substring(0, 1)));
-                if (row < 0 || row > 9)
+                var row = Array.FindIndex(linearray, c => c == char.Parse(str.Substring(0, 1)));
+                if (row < 0 || row >= boardSize)
                 {
                     throw new ArgumentOutOfRangeException();
                 }
 
                 var cell = int.Parse(str.Substring(1)) - 1;
-                if (cell < 0 || cell > 9)
+                if (cell < 0 || cell >= boardSize)
                 {
                     throw new ArgumentOutOfRangeException();
                 }

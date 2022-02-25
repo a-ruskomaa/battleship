@@ -1,6 +1,8 @@
 using System.Linq;
 using System.Collections.Generic;
 
+using static Battleship.Constants.Constants;
+
 namespace Battleship.Game
 {
     /// <summary>
@@ -12,6 +14,7 @@ namespace Battleship.Game
         ///   Coordinates of board pieces
         /// </summary>
         public IEnumerable<Coordinate> Pieces { get; }
+        
         /// <summary>
         ///   Coordinates of fired shots
         /// </summary>
@@ -21,7 +24,7 @@ namespace Battleship.Game
         {
             Pieces = pieces.SelectMany(row => row.Select(cell => Coordinate.ParseFromString(cell)));
 
-            ShotsFired = shotsFired.Select((shot, index) => !string.IsNullOrEmpty(shot) ? new Coordinate(index / 10, index % 10) : null).Where(coordinate => coordinate is not null);
+            ShotsFired = shotsFired.Select((shot, index) => !string.IsNullOrEmpty(shot) ? new Coordinate(index / boardSize, index % boardSize) : null).Where(coordinate => coordinate is not null);
         }
 
         public static GameActions FromJson(string filePath)
