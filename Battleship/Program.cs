@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Dynamic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Reflection;
-using System.Threading.Tasks;
 using System.Text;
 
 using Battleship.Game;
@@ -24,7 +18,7 @@ namespace Battleship
             Console.ReadKey();
         }
 
-        public static void PrintSummary(string endState)
+        private static void PrintSummary(string endState)
         {
             var sb = new StringBuilder();
 
